@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { UserRole } from '../../../models/user.model';
+import { MedicalClinic } from '@/app/models/medical-clinic.model';
+import { MedicalClinicService } from '@/app/services/medical-clinic.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,17 +16,35 @@ export class RegisterComponent implements OnInit {
   isSubmitting = false;
   errorMessage = '';
   isPatient = true;
+  clinics: MedicalClinic[] = [];
+  isLoadingClinics = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private medicalClinicService: MedicalClinicService
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+    this.loadClinics();
   }
 
+  loadClinics(): void {
+    this.isLoadingClinics = true;
+    this.medicalClinicService.getMedicalClinics().subscribe({
+      next: (clinics) => {
+        this.clinics = clinics;
+        console.log(this.clinics);
+        this.isLoadingClinics = false;
+      },
+      error: (error) => {
+        console.error('Failed to load clinics', error);
+        this.isLoadingClinics = false;
+      },
+    });
+  }
   initializeForm(): void {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],

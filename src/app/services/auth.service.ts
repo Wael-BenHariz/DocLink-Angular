@@ -6,7 +6,7 @@ import { User, UserRole } from '../models/user.model';
 
 interface AuthResponse {
   user: User;
-  token: string;
+  accessToken: string;
 }
 
 const apiUrl = 'http://localhost:5190/api/auth';
@@ -70,13 +70,16 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('/api/auth/login', { username, password }).pipe(
+    return this.http.post<AuthResponse>(apiUrl+'/login', { username, password }).pipe(
+
       tap((response) => this.handleAuthentication(response))
     );
+
   }
 
   private handleAuthentication(response: AuthResponse): void {
-    localStorage.setItem(this.TOKEN_KEY, response.token);
+    console.log(response);
+    localStorage.setItem(this.TOKEN_KEY, response.accessToken);
     localStorage.setItem(this.USER_KEY, JSON.stringify(response.user));
     this.currentUserSubject.next(response.user);
   }
