@@ -10,6 +10,7 @@ import  { User } from "../../../models/user.model"
   standalone:false
 })
 export class HeaderComponent implements OnInit {
+  
   currentUser: User | null = null
   isMenuOpen = false
 

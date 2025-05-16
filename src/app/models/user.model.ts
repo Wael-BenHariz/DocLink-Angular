@@ -34,3 +34,24 @@ export interface User {
   patientAppointments?: Appointment[]
   paymentTransactions?: PaymentTransaction[]
 }
+
+export interface DoctorDto {
+  username: string
+  firstName?: string
+  lastName?: string
+  phoneNumber?: string
+  email?: string
+  speciality?: string
+  description?: string
+  diploma?: string
+  profilePhotoUrl?: string
+  clinicId?: number
+}
+export interface DoctorDto {
+  username: string
+  firstName?: string
+  lastName?: string
+  phoneNumber?: string
+  email?: string
+  profilePhotoUrl?: string
+}
