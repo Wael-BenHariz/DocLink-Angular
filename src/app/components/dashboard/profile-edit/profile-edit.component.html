@@ -1,0 +1,64 @@
+<div class="profile-edit">
+  <div class="content-header">
+    <h2>Edit Profile</h2>
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    <i class="fas fa-exclamation-circle me-2"></i>
+    {{ errorMessage }}
+
+This Angular medical service project includes all the components, services, and models needed for your healthcare platform. Here's a breakdown of what I've created:
+
+### Core Features
+
+1. **Authentication System**
+   - Registration and login components with form validation
+   - JWT token-based authentication (mocked for now)
+   - User roles (Patient, Doctor, Admin)
+
+2. **Home Page**
+   - Hero section with call-to-action buttons
+   - Feature cards highlighting key benefits
+   - Featured doctors section
+   - Testimonials carousel
+   - Statistics section
+
+3. **Doctor Listing**
+   - Grid of doctor cards with search and filter functionality
+   - Doctor details page with tabs for about, services, reviews, and availability
+   - Star rating component for reviews
+
+4. **Service Listing**
+   - Grid of service cards with search and filter functionality
+   - Service details with pricing and duration
+
+5. **Appointment Booking**
+   - Form to select doctor, service, date, and time
+   - Available time slots based on doctor availability
+   - Reason for visit description
+
+6. **User Dashboard**
+   - Appointment history with filtering by status
+   - Profile editing
+   - Different views for patients and doctors
+
+### Technical Implementation
+
+- **Models**: All models match your C# backend models
+- **Services**: Auth, Doctor, Service, and Appointment services with mock data
+- **Components**: Organized by feature with proper separation of concerns
+- **Styling**: Clean healthcare-themed design with responsive layouts
+- **Routing**: Complete routing configuration with guards for protected routes
+
+### Integration Points
+
+The code is structured to easily integrate with your backend:
+- Mock services can be replaced with HTTP calls to your API
+- Models match your backend entities
+- Authentication is set up to work with JWT tokens
+
+To run this project, you'll need to:
+1. Create a new Angular project
+2. Copy these files into the appropriate directories
+3. Install dependencies (Bootstrap, Font Awesome)
+4. Replace the mock data with API calls when your backend is ready

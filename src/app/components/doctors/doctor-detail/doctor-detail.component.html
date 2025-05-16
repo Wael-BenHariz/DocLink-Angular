@@ -1,0 +1,312 @@
+<div class="doctor-detail-container">
+  <div class="container">
+    <div *ngIf="isLoading" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading && doctor" class="doctor-profile">
+      <!-- Doctor Header -->
+      <div class="doctor-header">
+        <div class="row align-items-center">
+          <div class="col-md-3">
+            <div class="doctor-image">
+              <img [src]="doctor.profilePhotoUrl || 'assets/images/doctor-placeholder.jpg'" [alt]="doctor.firstName + ' ' + doctor.lastName">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="doctor-info">
+              <h1>Dr. {{ doctor.firstName }} {{ doctor.lastName }}</h1>
+              <p class="doctor-specialty">{{ doctor.speciality }}</p>
+              <div class="doctor-rating">
+                <app-star-rating [rating]="4.5" [readOnly]="true"></app-star-rating>
+                <span class="rating-count">({{ reviews.length }} reviews)</span>
+              </div>
+              <p class="doctor-description">{{ doctor.description }}</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="doctor-actions">
+              <button class="btn btn-primary btn-lg w-100" (click)="bookAppointment()">
+                Book Appointment
+              </button>
+              <div class="contact-info">
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>{{ doctor.email }}</span>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <span>{{ doctor.phoneNumber }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor Details Tabs -->
+      <div class="doctor-details-tabs">
+        <ul class="nav nav-tabs" id="doctorTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true">About</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="services-tab" data-bs-toggle="tab" data-bs-target="#services" type="button" role="tab" aria-controls="services" aria-selected="false">Services</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability" type="button" role="tab" aria-controls="availability" aria-selected="false">Availability</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="doctorTabsContent">
+          <!-- About Tab -->
+          <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+            <div class="about-content">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="about-section">
+                    <h3>Biography</h3>
+                    <p>{{ doctor.description }}</p>
+                  </div>
+
+                  <div class="about-section">
+                    <h3>Education & Experience</h3>
+                    <div class="education-item">
+                      <div class="education-year">2010 - 2014</div>
+                      <div class="education-info">
+                        <h4>{{ doctor.diploma }}</h4>
+                        <p>Medical Degree</p>
+                      </div>
+                    </div>
+                    <div class="education-item">
+                      <div class="education-year">2014 - 2018</div>
+                      <div class="education-info">
+                        <h4>Residency in {{ doctor.speciality }}</h4>
+                        <p>General Hospital</p>
+                      </div>
+                    </div>
+                    <div class="education-item">
+                      <div class="education-year">2018 - Present</div>
+                      <div class="education-info">
+                        <h4>{{ doctor.speciality }} Specialist</h4>
+                        <p>{{ doctor.clinic?.name || 'Medical Clinic' }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="about-section">
+                    <h3>Clinic Information</h3>
+                    <div class="clinic-info">
+                      <div class="info-item">
+                        <i class="fas fa-hospital"></i>
+                        <div>
+                          <h4>{{ doctor.clinic?.name || 'Medical Clinic' }}</h4>
+                          <p>{{ doctor.clinic?.address || '123 Medical Center Dr' }}</p>
+                        </div>
+                      </div>
+                      <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                          <h4>Phone</h4>
+                          <p>{{ doctor.clinic?.phone || doctor.phoneNumber }}</p>
+                        </div>
+                      </div>
+                      <div class="info-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                          <h4>Website</h4>
+                          <p>{{ doctor.clinic?.websiteUrl || 'www.medicalclinic.com' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Services Tab -->
+          <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
+            <div class="services-content">
+              <div class="row">
+                <div *ngFor="let service of services" class="col-md-6 col-lg-4">
+                  <div class="service-card">
+                    <div class="service-image">
+                      <img [src]="service.imageUrl || 'assets/images/services/default.jpg'" [alt]="service.name">
+                    </div>
+                    <div class="service-info">
+                      <h3>{{ service.name }}</h3>
+                      <p class="service-category">{{ service.category }}</p>
+                      <p class="service-description">{{ service.description }}</p>
+                      <div class="service-details">
+                        <div class="detail-item">
+                          <i class="fas fa-clock"></i>
+                          <span>{{ service.durationMinutes }} minutes</span>
+                        </div>
+                        <div class="detail-item">
+                          <i class="fas fa-dollar-sign"></i>
+                          <span>${{ service.price }}</span>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary" (click)="bookAppointment()">Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="services.length === 0" class="col-12">
+                  <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    No services listed for this doctor yet.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews Tab -->
+          <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+            <div class="reviews-content">
+              <div class="reviews-summary">
+                <div class="row align-items-center">
+                  <div class="col-md-4">
+                    <div class="overall-rating">
+                      <div class="rating-number">4.5</div>
+                      <app-star-rating [rating]="4.5" [readOnly]="true"></app-star-rating>
+                      <div class="rating-count">Based on {{ reviews.length }} reviews</div>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="rating-bars">
+                      <div class="rating-bar-item">
+                        <div class="rating-label">5 Stars</div>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="rating-count">70%</div>
+                      </div>
+                      <div class="rating-bar-item">
+                        <div class="rating-label">4 Stars</div>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="rating-count">20%</div>
+                      </div>
+                      <div class="rating-bar-item">
+                        <div class="rating-label">3 Stars</div>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="rating-count">5%</div>
+                      </div>
+                      <div class="rating-bar-item">
+                        <div class="rating-label">2 Stars</div>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 3%" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="rating-count">3%</div>
+                      </div>
+                      <div class="rating-bar-item">
+                        <div class="rating-label">1 Star</div>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 2%" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="rating-count">2%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reviews-list">
+                <div *ngFor="let review of reviews" class="review-item">
+                  <div class="review-header">
+                    <div class="reviewer-info">
+                      <div class="reviewer-avatar">
+                        <img [src]="review.patient?.profilePhotoUrl || 'assets/images/user-placeholder.jpg'" [alt]="review.patient?.firstName">
+                      </div>
+                      <div class="reviewer-details">
+                        <h4>{{ review.patient?.firstName }} {{ review.patient?.lastName }}</h4>
+                        <div class="review-date">{{ review.datePosted | date }}</div>
+                      </div>
+                    </div>
+                    <div class="review-rating">
+                      <app-star-rating [rating]="review.stars" [readOnly]="true"></app-star-rating>
+                    </div>
+                  </div>
+                  <div class="review-content">
+                    <p>{{ review.comment }}</p>
+                  </div>
+                </div>
+
+                <div *ngIf="reviews.length === 0" class="no-reviews">
+                  <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    No reviews yet. Be the first to review Dr. {{ doctor.firstName }} {{ doctor.lastName }}.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Availability Tab -->
+          <div class="tab-pane fade" id="availability" role="tabpanel" aria-labelledby="availability-tab">
+            <div class="availability-content">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="schedule-table">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Day</th>
+                          <th>Hours</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let day of [0, 1, 2, 3, 4, 5, 6]">
+                          <td>{{ getDayName(day) }}</td>
+                          <td>
+                            <ng-container >
+                              
+                            </ng-container>
+                            <ng-template #notAvailable>
+                              -
+                            </ng-template>
+                          </td>
+                          <td>
+                            <span
+                              class="status-badge"
+
+                            >
+
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="availability-info">
+                    <h3>Book an Appointment</h3>
+                    <p>Dr. {{ doctor.firstName }} {{ doctor.lastName }} is available on the days shown in the schedule. Click the button below to book your appointment.</p>
+                    <button class="btn btn-primary btn-lg w-100" (click)="bookAppointment()">
+                      Book Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
