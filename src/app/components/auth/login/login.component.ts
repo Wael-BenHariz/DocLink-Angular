@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core"
-import { FormBuilder, FormGroup, Validators } from "@angular/forms"
-import { Router, ActivatedRoute } from "@angular/router"
-import { AuthService } from "../../../services/auth.service"
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-login",
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isSubmitting = false
   errorMessage = ""
   returnUrl = ""
+  
 
   constructor(
     private formBuilder: FormBuilder,

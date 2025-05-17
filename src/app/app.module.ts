@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
-import { FormsModule, ReactiveFormsModule } from "@angular/forms"
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { RouterModule } from "@angular/router"
@@ -22,7 +22,8 @@ import { AppointmentHistoryComponent } from "./components/dashboard/appointment-
 import { ProfileEditComponent } from "./components/dashboard/profile-edit/profile-edit.component"
 import { ServiceCardComponent } from "./components/services/service-card/service-card.component"
 import { DoctorCardComponent } from "./components/doctors/doctor-card/doctor-card.component"
-import { AuthGuard } from "./guards/auth.guard"
+import { AuthGuard } from "./guards/auth.guard";
+
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { AuthGuard } from "./guards/auth.guard"
     ProfileEditComponent,
     ServiceCardComponent,
     DoctorCardComponent,
-
+  
   ],
   imports: [
     BrowserModule,

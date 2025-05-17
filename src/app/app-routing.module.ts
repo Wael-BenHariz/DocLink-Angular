@@ -12,6 +12,7 @@ import { ProfileEditComponent } from "./components/dashboard/profile-edit/profil
 import { AppointmentHistoryComponent } from "./components/dashboard/appointment-history/appointment-history.component"
 import { AuthGuard } from "./guards/auth.guard"
 
+
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "register", component: RegisterComponent },

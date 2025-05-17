@@ -24,27 +24,29 @@ export class DoctorListComponent implements OnInit {
   }
 
   loadDoctors(): void {
+    this.isLoading = true;
     this.doctorService.getDoctors().subscribe({
       next: (doctors) => {
-        this.doctors = doctors
-        this.filteredDoctors = doctors
-
-        // Extract unique specialties
-        const specialtiesSet = new Set<string>()
-        doctors.forEach((doctor) => {
-          if (doctor.speciality) {
-            specialtiesSet.add(doctor.speciality)
-          }
-        })
-        this.specialties = Array.from(specialtiesSet)
-
-        this.isLoading = false
+        this.doctors = doctors;
+        this.filteredDoctors = doctors;
+        console.log(doctors)
+  
+        const specialtiesSet = new Set<string>(
+          doctors
+            .filter((doctor) => doctor.speciality)
+            .map((doctor) => doctor.speciality!)
+        );
+        this.specialties = Array.from(specialtiesSet);
+  
+        this.isLoading = false;
       },
-      error: () => {
-        this.isLoading = false
+      error: (err) => {
+        console.error('Failed to load doctors:', err);
+        this.isLoading = false;
       },
-    })
+    });
   }
+  
 
   filterDoctors(): void {
     this.filteredDoctors = this.doctors.filter((doctor) => {

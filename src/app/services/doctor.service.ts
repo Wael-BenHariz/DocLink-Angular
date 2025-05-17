@@ -9,6 +9,7 @@ import  { DoctorAvailability } from "../models/doctor-availability.model"
   providedIn: "root",
 })
 export class DoctorService {
+  apiurl ="http://localhost:5190"
   // Mock data for development
   private mockDoctors: User[] = [
     {
@@ -140,21 +141,16 @@ export class DoctorService {
 
   constructor(private http: HttpClient) {}
 
-  getDoctors(): Observable<User[]> {
-    // In a real app, this would be an HTTP request
-    // return this.http.get<User[]>('/api/doctors');
 
-    // Mock implementation
-    return of(this.mockDoctors)
+  getDoctors(): Observable<User[]> {
+
+    return this.http.get<User[]>(this.apiurl+'/api/doctors');
   }
 
   getDoctorById(id: number): Observable<User | undefined> {
-    // In a real app, this would be an HTTP request
-    // return this.http.get<User>(`/api/doctors/${id}`);
+    return this.http.get<User>(this.apiurl+`/api/doctors/${id}`);
 
-    // Mock implementation
-    const doctor = this.mockDoctors.find((d) => d.id === id)
-    return of(doctor)
+    
   }
 
   getDoctorReviews(doctorId: number): Observable<DoctorReview[]> {

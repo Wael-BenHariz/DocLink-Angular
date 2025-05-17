@@ -36,6 +36,8 @@ export class AuthService {
       }
     }
   }
+  
+
 
   registerPatient(patientData: {
     username: string;
