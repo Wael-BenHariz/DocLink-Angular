@@ -11,6 +11,7 @@ import { UserDashboardComponent } from "./components/dashboard/user-dashboard/us
 import { ProfileEditComponent } from "./components/dashboard/profile-edit/profile-edit.component"
 import { AppointmentHistoryComponent } from "./components/dashboard/appointment-history/appointment-history.component"
 import { AuthGuard } from "./guards/auth.guard"
+import { AddServiceComponent } from "./components/services/add-service/add-service.component"
 
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
   { path: "doctors", component: DoctorListComponent },
   { path: "doctors/:id", component: DoctorDetailComponent },
   { path: "services", component: ServiceListComponent },
+  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   {path: "add-service", component: AddServiceComponent },
+  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   {
     path: "appointment",
     component: AppointmentComponent,
