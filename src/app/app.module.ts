@@ -23,6 +23,7 @@ import { ProfileEditComponent } from "./components/dashboard/profile-edit/profil
 import { ServiceCardComponent } from "./components/services/service-card/service-card.component"
 import { DoctorCardComponent } from "./components/doctors/doctor-card/doctor-card.component"
 import { AuthGuard } from "./guards/auth.guard";
+import { AddServiceComponent } from './components/services/add-service/add-service.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { AuthGuard } from "./guards/auth.guard";
     ProfileEditComponent,
     ServiceCardComponent,
     DoctorCardComponent,
+    AddServiceComponent,
   
   ],
   imports: [
