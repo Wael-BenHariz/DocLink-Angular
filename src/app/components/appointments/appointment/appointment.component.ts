@@ -95,7 +95,6 @@ export class AppointmentComponent implements OnInit {
         this.services = services
         this.filteredServices = services
 
-        // If doctor is already selected, filter services
         const doctorId = this.appointmentForm.get("doctorId")?.value
         if (doctorId) {
           this.filterServicesByDoctor(doctorId)
@@ -129,7 +128,9 @@ export class AppointmentComponent implements OnInit {
   }
 
   filterServicesByDoctor(doctorId: number): void {
-    this.filteredServices = this.services.filter((service) => service.doctorId === doctorId)
+    this.serviceService.getServicesByDoctor(doctorId).subscribe((services) => {
+      this.filteredServices = services
+    })
   }
 
   onDateChange(): void {

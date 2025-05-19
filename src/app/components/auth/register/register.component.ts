@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/auth.service';
 import { UserRole } from '../../../models/user.model';
 import { MedicalClinic } from '@/app/models/medical-clinic.model';
 import { MedicalClinicService } from '@/app/services/medical-clinic.service';
+import { FileUploadService } from '@/app/services/file-upload.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,12 +19,16 @@ export class RegisterComponent implements OnInit {
   isPatient = true;
   clinics: MedicalClinic[] = [];
   isLoadingClinics = false;
+  selectedFile: File | null = null;
+  profilePhotoUrl: string | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private medicalClinicService: MedicalClinicService
+    private medicalClinicService: MedicalClinicService,
+    private fileUploadService: FileUploadService,
+
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +69,29 @@ export class RegisterComponent implements OnInit {
     });
 
     this.updateFormValidation();
+  }
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.uploadProfilePhoto();
+    }
+  }
+
+  uploadProfilePhoto(): void {
+    if (!this.selectedFile) return;
+
+    this.isSubmitting = true;
+    this.fileUploadService.uploadProfilePhoto(this.selectedFile).subscribe({
+      next: (response) => {
+        this.profilePhotoUrl = response.imageUrl;
+        this.isSubmitting = false;
+      },
+      error: (error) => {
+        this.errorMessage = 'Failed to upload profile photo. Please try again.';
+        this.isSubmitting = false;
+      }
+    });
   }
 
   setRole(role: 'patient' | 'doctor'): void {
@@ -106,7 +134,11 @@ export class RegisterComponent implements OnInit {
     this.isSubmitting = true;
     this.errorMessage = '';
 
-    const formData = { ...this.registerForm.value };
+    const formData = {
+      ...this.registerForm.value,
+      profilePhotoUrl: this.profilePhotoUrl
+    };
+
     delete formData.confirmPassword;
 
     if (this.isPatient) {

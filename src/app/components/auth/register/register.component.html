@@ -94,6 +94,29 @@
                 </div>
               </div>
 
+              <div class="mb-3">
+                <label for="profilePhoto" class="form-label">Profile Photo</label>
+                <input
+                  type="file"
+                  id="profilePhoto"
+                  class="form-control"
+                  (change)="onFileSelected($event)"
+                  accept="image/*"
+                  [disabled]="isSubmitting"
+                >
+                <small class="text-muted">Upload a profile picture (optional)</small>
+                <div *ngIf="profilePhotoUrl" class="mt-2">
+                  <img [src]="profilePhotoUrl" alt="Preview" class="img-thumbnail" style="max-height: 100px;">
+                </div>
+                <div *ngIf="isSubmitting && selectedFile" class="mt-2">
+                  <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Uploading...</span>
+                  </div>
+                  <small class="ms-2">Uploading profile photo...</small>
+                </div>
+              </div>
+
+
               <!-- Doctor Specific Fields -->
               <div *ngIf="!isPatient" class="doctor-fields">
                 <div class="mb-3">
