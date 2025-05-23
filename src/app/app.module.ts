@@ -24,6 +24,9 @@ import { ServiceCardComponent } from "./components/services/service-card/service
 import { DoctorCardComponent } from "./components/doctors/doctor-card/doctor-card.component"
 import { AuthGuard } from "./guards/auth.guard";
 import { AddServiceComponent } from './components/services/add-service/add-service.component';
+import { MedicalClinicFormComponent } from './components/admin/medical-clinic-form/medical-clinic-form.component';
+import { ClinicListComponent } from './components/admin/clinic-list/clinic-list.component';
+import { UpdateMedicalClinicComponent } from './components/admin/update-medical-clinic/update-medical-clinic.component';
 
 
 @NgModule({
@@ -46,6 +49,9 @@ import { AddServiceComponent } from './components/services/add-service/add-servi
     ServiceCardComponent,
     DoctorCardComponent,
     AddServiceComponent,
+    MedicalClinicFormComponent,
+    ClinicListComponent,
+    UpdateMedicalClinicComponent,
   
   ],
   imports: [
