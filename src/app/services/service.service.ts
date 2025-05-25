@@ -39,5 +39,11 @@ export class ServiceService {
 
   }
 
+  addService(service : HealthcareService): Observable<HealthcareService> {
+    return this.http.post<HealthcareService>(this.apiUrl, service, {
+      headers: this.getHeaders()
+    });
+  }
+
 
 }

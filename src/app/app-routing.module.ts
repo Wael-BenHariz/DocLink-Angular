@@ -12,6 +12,9 @@ import { ProfileEditComponent } from "./components/dashboard/profile-edit/profil
 import { AppointmentHistoryComponent } from "./components/dashboard/appointment-history/appointment-history.component"
 import { AuthGuard } from "./guards/auth.guard"
 import { AddServiceComponent } from "./components/services/add-service/add-service.component"
+import { MedicalClinicFormComponent } from "./components/admin/medical-clinic-form/medical-clinic-form.component"
+import { ClinicListComponent } from "./components/admin/clinic-list/clinic-list.component"
+import { UpdateMedicalClinicComponent } from "./components/admin/update-medical-clinic/update-medical-clinic.component"
 
 
 const routes: Routes = [
@@ -23,6 +26,9 @@ const routes: Routes = [
   { path: "services", component: ServiceListComponent },
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    {path: "add-service", component: AddServiceComponent },
+   {path: "medical-clinic-form",component: MedicalClinicFormComponent},
+   {path: "clinic-list", component: ClinicListComponent},
+   {path: "update-clinic/:id", component: UpdateMedicalClinicComponent},
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   {
     path: "appointment",

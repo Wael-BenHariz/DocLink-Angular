@@ -1,19 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MedicalClinicService } from '@/app/services/medical-clinic.service';
 
 
-interface HealthcareService {
-  id?: number;
-  doctorId?: number;
-  doctor?: any;
-  name: string;
-  description: string;
-  category: string;
-  imageUrl?: string;
-  price?: number;
-  durationMinutes: number;
-}
+
 
 @Component({
   selector: 'app-add-service',
@@ -29,13 +20,14 @@ export class AddServiceComponent {
   fileError: string | null = null;
   selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient,medicalClinicService:MedicalClinicService) {
     this.serviceForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
       category: ['', Validators.required],
-      price: [null, [Validators.min(0)]],
-      durationMinutes: [30, [Validators.required, Validators.min(5), Validators.max(240)]]
+      price: [0, [Validators.required, Validators.min(0)]],
+      durationMinutes: [30, [Validators.required, Validators.min(1)]],
+      imageUrl: ['']
     });
   }
 
@@ -67,43 +59,10 @@ export class AddServiceComponent {
   }
 
   onSubmit(): void {
-    if (this.serviceForm.invalid) {
-      this.markFormGroupTouched(this.serviceForm);
-      return;
-    }
 
-    this.isSubmitting = true;
-    const formData = new FormData();
-    const serviceData: HealthcareService = this.serviceForm.value;
-    
-    // Append form fields
-    formData.append('name', serviceData.name);
-    formData.append('description', serviceData.description);
-    formData.append('category', serviceData.category);
-    if (serviceData.price) {
-      formData.append('price', serviceData.price.toString());
-    }
-    formData.append('durationMinutes', serviceData.durationMinutes.toString());
-    
-    // Append file if selected
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile, this.selectedFile.name);
-    }
+  
 
-    this.http.post(``, formData)
-      .subscribe({
-        next: () => {
-          this.isSubmitting = false;
-          this.submitSuccess = true;
-          this.resetForm();
-          setTimeout(() => this.submitSuccess = false, 3000);
-        },
-        error: (err) => {
-          console.error('Error adding service:', err);
-          this.isSubmitting = false;
-          this.fileError = 'Failed to upload image';
-        }
-      });
+   
   }
 
   resetForm(): void {
