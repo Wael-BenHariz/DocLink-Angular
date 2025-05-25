@@ -143,8 +143,6 @@ export class AppointmentComponent implements OnInit {
       this.appointmentService.getAvailableTimeSlots(doctorId, date).subscribe({
         next: (timeSlots) => {
           this.availableTimeSlots = timeSlots
-
-          // Reset time slot selection
           this.appointmentForm.get("timeSlotId")?.setValue("")
         },
       })
