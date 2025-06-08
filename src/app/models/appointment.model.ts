@@ -15,7 +15,7 @@ export interface Appointment {
   patient?: User
   doctorId: number
   doctor?: User
-  status: AppointmentStatus
+  status?: AppointmentStatus
   description: string
   payment?: PaymentTransaction
 }

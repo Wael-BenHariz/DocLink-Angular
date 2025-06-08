@@ -3,11 +3,12 @@ import {
   XhrFactory,
   isPlatformServer,
   parseCookieValue
-} from "./chunk-NEGS3YYM.js";
+} from "./chunk-BPZ7AUX4.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
   Console,
+  DestroyRef,
   EnvironmentInjector,
   Inject,
   Injectable,
@@ -37,7 +38,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-Z67EBTI5.js";
+} from "./chunk-6SZJNWHU.js";
 import {
   Observable,
   __async,
@@ -53,7 +54,7 @@ import {
   tap
 } from "./chunk-CXCX2JKZ.js";
 
-// node_modules/@angular/common/fesm2022/module-BHk9jdTn.mjs
+// node_modules/@angular/common/fesm2022/module-z3bvLlVg.mjs
 var HttpHandler = class {
 };
 var HttpBackend = class {
@@ -1240,6 +1241,13 @@ var FetchBackend = class _FetchBackend {
     optional: true
   })?.fetch ?? ((...args) => globalThis.fetch(...args));
   ngZone = inject(NgZone);
+  destroyRef = inject(DestroyRef);
+  destroyed = false;
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.destroyed = true;
+    });
+  }
   handle(request) {
     return new Observable((observer) => {
       const aborter = new AbortController();
@@ -1293,8 +1301,14 @@ var FetchBackend = class _FetchBackend {
         let decoder;
         let partialText;
         const reqZone = typeof Zone !== "undefined" && Zone.current;
+        let canceled = false;
         yield this.ngZone.runOutsideAngular(() => __async(this, null, function* () {
           while (true) {
+            if (this.destroyed) {
+              yield reader.cancel();
+              canceled = true;
+              break;
+            }
             const {
               done,
               value
@@ -1318,6 +1332,10 @@ var FetchBackend = class _FetchBackend {
             }
           }
         }));
+        if (canceled) {
+          observer.complete();
+          return;
+        }
         const chunksAll = this.concatChunks(chunks, receivedLength);
         try {
           const contentType = response.headers.get(CONTENT_TYPE_HEADER) ?? "";
@@ -1412,7 +1430,7 @@ var FetchBackend = class _FetchBackend {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FetchBackend, [{
     type: Injectable
-  }], null, null);
+  }], () => [], null);
 })();
 var FetchFactory = class {
 };
@@ -1894,7 +1912,6 @@ var HttpXsrfTokenExtractor = class {
 };
 var HttpXsrfCookieExtractor = class _HttpXsrfCookieExtractor {
   doc;
-  platform;
   cookieName;
   lastCookieString = "";
   lastToken = null;
@@ -1902,13 +1919,12 @@ var HttpXsrfCookieExtractor = class _HttpXsrfCookieExtractor {
    * @internal for testing
    */
   parseCount = 0;
-  constructor(doc, platform, cookieName) {
+  constructor(doc, cookieName) {
     this.doc = doc;
-    this.platform = platform;
     this.cookieName = cookieName;
   }
   getToken() {
-    if (this.platform === "server") {
+    if (false) {
       return null;
     }
     const cookieString = this.doc.cookie || "";
@@ -1920,7 +1936,7 @@ var HttpXsrfCookieExtractor = class _HttpXsrfCookieExtractor {
     return this.lastToken;
   }
   static ɵfac = function HttpXsrfCookieExtractor_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HttpXsrfCookieExtractor)(ɵɵinject(DOCUMENT), ɵɵinject(PLATFORM_ID), ɵɵinject(XSRF_COOKIE_NAME));
+    return new (__ngFactoryType__ || _HttpXsrfCookieExtractor)(ɵɵinject(DOCUMENT), ɵɵinject(XSRF_COOKIE_NAME));
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _HttpXsrfCookieExtractor,
@@ -1935,12 +1951,6 @@ var HttpXsrfCookieExtractor = class _HttpXsrfCookieExtractor {
     decorators: [{
       type: Inject,
       args: [DOCUMENT]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [PLATFORM_ID]
     }]
   }, {
     type: void 0,
@@ -2328,6 +2338,7 @@ var HttpResourceImpl = class extends ResourceImpl {
           send({
             error
           });
+          abortSignal.removeEventListener("abort", onAbort);
         },
         complete: () => {
           if (resolve) {
@@ -2547,18 +2558,12 @@ export {
 };
 /*! Bundled license information:
 
-@angular/common/fesm2022/module-BHk9jdTn.mjs:
-  (**
-   * @license Angular v19.2.8
-   * (c) 2010-2025 Google LLC. https://angular.io/
-   * License: MIT
-   *)
-
+@angular/common/fesm2022/module-z3bvLlVg.mjs:
 @angular/common/fesm2022/http.mjs:
   (**
-   * @license Angular v19.2.8
+   * @license Angular v19.2.14
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-ZQ7XENCY.js.map
+//# sourceMappingURL=chunk-MNSBLXA5.js.map

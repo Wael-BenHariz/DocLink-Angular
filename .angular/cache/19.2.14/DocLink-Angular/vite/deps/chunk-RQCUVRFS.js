@@ -3,14 +3,14 @@ import {
   DomAdapter,
   getDOM,
   setRootDomAdapter
-} from "./chunk-VOSIYPZB.js";
+} from "./chunk-O4HOMCSG.js";
 import {
   DOCUMENT,
   PLATFORM_BROWSER_ID,
   XhrFactory,
   isPlatformServer,
   parseCookieValue
-} from "./chunk-NEGS3YYM.js";
+} from "./chunk-BPZ7AUX4.js";
 import {
   APP_ID,
   ApplicationModule,
@@ -45,7 +45,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-Z67EBTI5.js";
+} from "./chunk-6SZJNWHU.js";
 import {
   __spreadProps,
   __spreadValues
@@ -761,7 +761,7 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/@angular/platform-browser/fesm2022/browser-X3l5Bmdq.mjs
+// node_modules/@angular/platform-browser/fesm2022/browser-D-u-fknz.mjs
 var BrowserDomAdapter = class _BrowserDomAdapter extends DomAdapter {
   supportsDOMEvents = true;
   static makeCurrent() {
@@ -824,7 +824,7 @@ var BrowserDomAdapter = class _BrowserDomAdapter extends DomAdapter {
 };
 var baseElement = null;
 function getBaseElementHref() {
-  baseElement = baseElement || document.querySelector("base");
+  baseElement = baseElement || document.head.querySelector("base");
   return baseElement ? baseElement.getAttribute("href") : null;
 }
 function relativePath(url) {
@@ -1223,17 +1223,11 @@ export {
 /*! Bundled license information:
 
 @angular/platform-browser/fesm2022/dom_renderer-DGKzginR.mjs:
+@angular/platform-browser/fesm2022/browser-D-u-fknz.mjs:
   (**
-   * @license Angular v19.2.8
-   * (c) 2010-2025 Google LLC. https://angular.io/
-   * License: MIT
-   *)
-
-@angular/platform-browser/fesm2022/browser-X3l5Bmdq.mjs:
-  (**
-   * @license Angular v19.2.8
+   * @license Angular v19.2.14
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-3XHKE4NN.js.map
+//# sourceMappingURL=chunk-RQCUVRFS.js.map

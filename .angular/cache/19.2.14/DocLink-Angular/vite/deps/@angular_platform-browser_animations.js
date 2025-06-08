@@ -1,11 +1,11 @@
 import {
   BrowserModule,
   DomRendererFactory2
-} from "./chunk-3XHKE4NN.js";
-import "./chunk-VOSIYPZB.js";
+} from "./chunk-RQCUVRFS.js";
+import "./chunk-O4HOMCSG.js";
 import {
   DOCUMENT
-} from "./chunk-NEGS3YYM.js";
+} from "./chunk-BPZ7AUX4.js";
 import {
   ANIMATION_MODULE_TYPE,
   Inject,
@@ -20,7 +20,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-Z67EBTI5.js";
+} from "./chunk-6SZJNWHU.js";
 import "./chunk-FFZIAYYX.js";
 import "./chunk-6Q4RANH6.js";
 import {
@@ -28,7 +28,7 @@ import {
   __spreadValues
 } from "./chunk-CXCX2JKZ.js";
 
-// node_modules/@angular/animations/fesm2022/private_export-CacKMzxJ.mjs
+// node_modules/@angular/animations/fesm2022/private_export-faY_wCkZ.mjs
 var AnimationMetadataType;
 (function(AnimationMetadataType2) {
   AnimationMetadataType2[AnimationMetadataType2["State"] = 0] = "State";
@@ -283,7 +283,7 @@ var AnimationGroupPlayer = class {
 };
 var ɵPRE_STYLE = "!";
 
-// node_modules/@angular/animations/fesm2022/util-DN3Vao_r.mjs
+// node_modules/@angular/animations/fesm2022/util-D9FfmVnv.mjs
 var LINE_START = "\n - ";
 function invalidTimingValue(exp) {
   return new RuntimeError(3e3, ngDevMode && `The provided timing value "${exp}" is invalid.`);
@@ -4441,30 +4441,12 @@ export {
 };
 /*! Bundled license information:
 
-@angular/animations/fesm2022/private_export-CacKMzxJ.mjs:
-  (**
-   * @license Angular v19.2.8
-   * (c) 2010-2025 Google LLC. https://angular.io/
-   * License: MIT
-   *)
-
-@angular/animations/fesm2022/util-DN3Vao_r.mjs:
-  (**
-   * @license Angular v19.2.8
-   * (c) 2010-2025 Google LLC. https://angular.io/
-   * License: MIT
-   *)
-
+@angular/animations/fesm2022/private_export-faY_wCkZ.mjs:
+@angular/animations/fesm2022/util-D9FfmVnv.mjs:
 @angular/animations/fesm2022/browser.mjs:
-  (**
-   * @license Angular v19.2.8
-   * (c) 2010-2025 Google LLC. https://angular.io/
-   * License: MIT
-   *)
-
 @angular/platform-browser/fesm2022/animations.mjs:
   (**
-   * @license Angular v19.2.8
+   * @license Angular v19.2.14
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)

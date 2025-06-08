@@ -29,6 +29,7 @@ import { ClinicListComponent } from './components/admin/clinic-list/clinic-list.
 import { UpdateMedicalClinicComponent } from './components/admin/update-medical-clinic/update-medical-clinic.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,7 @@ import { UpdateMedicalClinicComponent } from './components/admin/update-medical-
     MedicalClinicFormComponent,
     ClinicListComponent,
     UpdateMedicalClinicComponent,
-  
+
   ],
   imports: [
     BrowserModule,
@@ -62,6 +63,7 @@ import { UpdateMedicalClinicComponent } from './components/admin/update-medical-
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule,
+
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

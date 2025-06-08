@@ -1,16 +1,16 @@
 import {
+  withHttpTransferCache
+} from "./chunk-MNSBLXA5.js";
+import {
   EVENT_MANAGER_PLUGINS,
   EventManagerPlugin
-} from "./chunk-3XHKE4NN.js";
-import {
-  withHttpTransferCache
-} from "./chunk-ZQ7XENCY.js";
+} from "./chunk-RQCUVRFS.js";
 import {
   getDOM
-} from "./chunk-VOSIYPZB.js";
+} from "./chunk-O4HOMCSG.js";
 import {
   DOCUMENT
-} from "./chunk-NEGS3YYM.js";
+} from "./chunk-BPZ7AUX4.js";
 import {
   ApplicationRef,
   Console,
@@ -50,7 +50,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-Z67EBTI5.js";
+} from "./chunk-6SZJNWHU.js";
 
 // node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 var Meta = class _Meta {
@@ -787,7 +787,7 @@ function provideClientHydration(...features) {
   }
   return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideZoneJsCompatibilityDetector() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
 }
-var VERSION = new Version("19.2.8");
+var VERSION = new Version("19.2.14");
 
 export {
   Meta,
@@ -815,9 +815,9 @@ export {
 
 @angular/platform-browser/fesm2022/platform-browser.mjs:
   (**
-   * @license Angular v19.2.8
+   * @license Angular v19.2.14
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-MF2UQWTI.js.map
+//# sourceMappingURL=chunk-I7WN6VDD.js.map

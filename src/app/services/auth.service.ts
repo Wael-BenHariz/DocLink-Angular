@@ -36,7 +36,7 @@ export class AuthService {
       }
     }
   }
-  
+
 
 
   registerPatient(patientData: {
@@ -102,6 +102,9 @@ export class AuthService {
 
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
+  }
+  getUserId(): any {
+    return  this.currentUserSubject.value ? this.currentUserSubject.value.id : null;
   }
 
   isDoctor(): boolean {

@@ -6,9 +6,9 @@ import type { Appointment } from "./appointment.model"
 import type { PaymentTransaction } from "./payment-transaction.model"
 
 export enum UserRole {
-  Patient = "Patient",
-  Doctor = "Doctor",
-  Admin = "Admin",
+  Patient,
+  Doctor,
+  Admin   
 }
 
 export interface User {

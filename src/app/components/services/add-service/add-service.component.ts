@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MedicalClinicService } from '@/app/services/medical-clinic.service';
-
+import { HealthcareService } from '@/app/models/healthcare-service.model';
+import { ServiceService } from '@/app/services/service.service';
+import { AuthService } from '@/app/services/auth.service';
+import { FileUploadService } from '@/app/services/file-upload.service';
 
 
 
@@ -19,8 +22,10 @@ export class AddServiceComponent {
   imagePreview: string | null = null;
   fileError: string | null = null;
   selectedFile: File | null = null;
+  healthcareService!: HealthcareService;
+  PhotoUrl: string ="";
 
-  constructor(private fb: FormBuilder, private http: HttpClient,medicalClinicService:MedicalClinicService) {
+  constructor(private fb: FormBuilder, private authService:AuthService,private service:ServiceService,private fileUploadService:FileUploadService) {
     this.serviceForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
@@ -60,9 +65,30 @@ export class AddServiceComponent {
 
   onSubmit(): void {
 
-  
+    if (this.selectedFile) {
+      this.fileUploadService.uploadProfilePhoto(this.selectedFile).subscribe({
+        next: (response) => {
+          this.PhotoUrl = response.imageUrl;
+          this.isSubmitting = false;
+        },
+        error: (error) => {
+        console.log("error uploading image : ", error);
+        this.isSubmitting = false;
+      }
+    });
+    }
+    console.log("serviceForm.value:::::", this.serviceForm.value);
+    this.healthcareService = this.serviceForm.value;
+    this.healthcareService.doctorId = this.authService.getUserId();
+    this.healthcareService.imageUrl = this.PhotoUrl;
+    this.service.addService(this.healthcareService).subscribe((response) => {
+      console.log("response:::::", response);
+    },(error)=>{
+      console.log("error adding service : ", error);
+    });
 
-   
+
+
   }
 
   resetForm(): void {
