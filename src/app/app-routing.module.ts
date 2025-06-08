@@ -43,6 +43,7 @@ const routes: Routes = [
       { path: "", redirectTo: "appointments", pathMatch: "full" },
       { path: "profile", component: ProfileEditComponent },
       { path: "appointments", component: AppointmentHistoryComponent },
+      {path:"add-service",component:AddServiceComponent}
     ],
   },
   { path: "**", redirectTo: "" },

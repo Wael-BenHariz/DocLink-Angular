@@ -12,7 +12,7 @@
               <p class="user-role">{{ currentUser?.role }}</p>
             </div>
           </div>
-          
+
           <div class="sidebar-menu">
             <a routerLink="/dashboard/appointments" routerLinkActive="active" class="menu-item">
               <i class="fas fa-calendar-check"></i>
@@ -30,7 +30,7 @@
               <i class="fas fa-clock"></i>
               <span>Manage Availability</span>
             </a>
-            <a *ngIf="isDoctor" href="#" class="menu-item">
+            <a *ngIf="isDoctor" href="/dashboard/add-service" class="menu-item" routerLinkActive="active">
               <i class="fas fa-stethoscope"></i>
               <span>My Services</span>
             </a>
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-lg-9">
         <div class="dashboard-content">
           <router-outlet></router-outlet>

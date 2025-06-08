@@ -119,7 +119,7 @@ export class AppointmentHistoryComponent implements OnInit {
   cancelAppointment(appointmentId: number): void {
     if (confirm('Are you sure you want to cancel this appointment?')) {
       this.appointmentService
-        .updateAppointmentStatus(appointmentId, AppointmentStatus.Cancelled)
+        .updateAppointmentStatus(appointmentId, 2)
         .subscribe({
           next: () => {
             // Update local appointment status
@@ -167,8 +167,9 @@ export class AppointmentHistoryComponent implements OnInit {
       this.isDoctor &&
       confirm('Are you sure you want to confirm this appointment?')
     ) {
+
       this.appointmentService
-        .updateAppointmentStatus(appointmentId, AppointmentStatus.Confirmed)
+        .updateAppointmentStatus(appointmentId, 1)
         .subscribe({
           next: () => {
             // Update local appointment status
@@ -194,7 +195,7 @@ export class AppointmentHistoryComponent implements OnInit {
       confirm('Are you sure you want to mark this appointment as completed?')
     ) {
       this.appointmentService
-        .updateAppointmentStatus(appointmentId, AppointmentStatus.Completed)
+        .updateAppointmentStatus(appointmentId, 3)
         .subscribe({
           next: () => {
             // Update local appointment status

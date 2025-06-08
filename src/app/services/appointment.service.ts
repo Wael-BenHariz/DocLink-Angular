@@ -43,8 +43,12 @@ export class AppointmentService {
      return this.http.post<Appointment>(`${this.apiUrl}`, appointmentData, { headers: this.getHeaders() });
   }
 
-  updateAppointmentStatus(id: number, status: AppointmentStatus): Observable<Appointment> {
-    return this.http.patch<Appointment>(`${this.apiUrl}/Update/${id}`, { status }, { headers: this.getHeaders() });
-    }
+  updateAppointmentStatus(id: number, status: number): Observable<Appointment> {
+    return this.http.put<Appointment>(
+      `${this.apiUrl}/${id}/status`,
+      status,
+      { headers: this.getHeaders() }
+    );
+  }
 
 }
