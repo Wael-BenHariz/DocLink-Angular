@@ -16,7 +16,7 @@
         {{ doctor?.firstName }} {{ doctor?.lastName }}
       </h2>
       <div class="rating-section">
-        <app-star-rating [rating]="averageRating" [readOnly]="false"></app-star-rating>
+        <app-star-rating [rating]="averageRating" [readOnly]="true"></app-star-rating>
         <span class="rating-text">{{ averageRating | number:'1.1-1' }} ({{ reviews.length }} reviews)</span>
       </div>
       <div class="doctor-info">

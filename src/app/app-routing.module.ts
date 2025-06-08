@@ -15,6 +15,7 @@ import { AddServiceComponent } from "./components/services/add-service/add-servi
 import { MedicalClinicFormComponent } from "./components/admin/medical-clinic-form/medical-clinic-form.component"
 import { ClinicListComponent } from "./components/admin/clinic-list/clinic-list.component"
 import { UpdateMedicalClinicComponent } from "./components/admin/update-medical-clinic/update-medical-clinic.component"
+import { AdminDashboardComponent } from "./components/admin/admin-dashboard/admin-dashboard.component"
 
 
 const routes: Routes = [
@@ -35,6 +36,26 @@ const routes: Routes = [
     component: AppointmentComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: "admin",
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard ],
+    children: [
+      { path: "", redirectTo: "dashboard", pathMatch: "full" },
+  //    { path: "dashboard", component: AdminOverviewComponent },
+  //    { path: "users", component: UserManagementComponent },
+  //    { path: "doctors", component: DoctorManagementComponent },
+ //     { path: "clinics", component: ClinicManagementComponent },
+  //    { path: "appointments", component: AppointmentManagementComponent },
+  //    { path: "services", component: ServiceManagementComponent },
+  //    { path: "reports", component: ReportsComponent },
+  //    { path: "settings", component: SystemSettingsComponent },
+      { path: "medical-clinic-form", component: MedicalClinicFormComponent },
+      { path: "clinic-list", component: ClinicListComponent },
+      { path: "update-clinic/:id", component: UpdateMedicalClinicComponent }
+    ]
+  },
+
   {
     path: "dashboard",
     component: UserDashboardComponent,

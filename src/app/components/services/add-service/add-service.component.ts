@@ -24,6 +24,7 @@ export class AddServiceComponent {
   selectedFile: File | null = null;
   healthcareService!: HealthcareService;
   PhotoUrl: string ="";
+  errorMessage="";
 
   constructor(private fb: FormBuilder, private authService:AuthService,private service:ServiceService,private fileUploadService:FileUploadService) {
     this.serviceForm = this.fb.group({
@@ -36,52 +37,44 @@ export class AddServiceComponent {
     });
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      if (file.size > 2 * 1024 * 1024) { // 2MB limit
-        this.fileError = 'Image size must be less than 2MB';
-        this.imagePreview = null;
-        this.selectedFile = null;
-        return;
-      }
-      if (!file.type.startsWith('image/')) {
-        this.fileError = 'Please select an image file';
-        this.imagePreview = null;
-        this.selectedFile = null;
-        return;
-      }
-
-      this.fileError = null;
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
       this.selectedFile = file;
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result as string;
-      };
-      reader.readAsDataURL(file);
+      this.uploadPhoto();
     }
+  }
+
+  uploadPhoto(): void {
+    if (!this.selectedFile) return;
+
+    this.isSubmitting = true;
+    this.fileUploadService.uploadProfilePhoto(this.selectedFile).subscribe({
+      next: (response) => {
+        this.PhotoUrl = response.imageUrl;
+        this.isSubmitting = false;
+      },
+      error: (error) => {
+        this.errorMessage = 'Failed to upload profile photo. Please try again.';
+        this.isSubmitting = false;
+      }
+    });
   }
 
   onSubmit(): void {
 
-    if (this.selectedFile) {
-      this.fileUploadService.uploadProfilePhoto(this.selectedFile).subscribe({
-        next: (response) => {
-          this.PhotoUrl = response.imageUrl;
-          this.isSubmitting = false;
-        },
-        error: (error) => {
-        console.log("error uploading image : ", error);
-        this.isSubmitting = false;
-      }
-    });
-    }
+    
     console.log("serviceForm.value:::::", this.serviceForm.value);
-    this.healthcareService = this.serviceForm.value;
+    const formData = {
+      ...this.serviceForm.value,
+      imageUrl: this.PhotoUrl,
+      doctorId:this.authService.getUserId()
+
+    };
+   /* this.healthcareService = this.serviceForm.value;
     this.healthcareService.doctorId = this.authService.getUserId();
-    this.healthcareService.imageUrl = this.PhotoUrl;
-    this.service.addService(this.healthcareService).subscribe((response) => {
+    this.healthcareService.imageUrl = this.PhotoUrl;*/
+    this.service.addService(formData).subscribe((response) => {
       console.log("response:::::", response);
     },(error)=>{
       console.log("error adding service : ", error);
