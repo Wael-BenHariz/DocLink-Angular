@@ -14,6 +14,7 @@
           <li><a routerLink="/doctors" routerLinkActive="active">Doctors</a></li>
           <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
           <li *ngIf="isLoggedIn"><a routerLink="/appointment" routerLinkActive="active">Book Appointment</a></li>
+          <li *ngIf="isAdmin"><a routerLink="/admoun" routerLinkActive="active">Dashboard</a></li>
         </ul>
       </nav>
 

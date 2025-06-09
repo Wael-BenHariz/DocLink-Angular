@@ -5,6 +5,23 @@ import { HttpClientModule } from "@angular/common/http"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { RouterModule } from "@angular/router"
 import { AppRoutingModule } from "./app-routing.module"
+// Material Imports
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
 import { AppComponent } from "./app.component"
 import { RegisterComponent } from "./components/auth/register/register.component"
 import { LoginComponent } from "./components/auth/login/login.component"
@@ -28,6 +45,15 @@ import { MedicalClinicFormComponent } from './components/admin/medical-clinic-fo
 import { ClinicListComponent } from './components/admin/clinic-list/clinic-list.component';
 import { UpdateMedicalClinicComponent } from './components/admin/update-medical-clinic/update-medical-clinic.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+
+import { DataTableComponent } from './components/admin/shared/data-table/data-table.component';
+import { ClinicManagementComponent } from "./components/admin/clinic-management/clinic-management.component";
+import { UserManagementComponent } from "./components/admin/user-management/user-management.component";
+import { DoctorManagementComponent } from "./components/admin/doctor-management/doctor-management.component";
+import { DashboardComponent } from "./components/admin/dashboard/dashboard.component";
+import { ClinicDialogComponent } from "./components/admin/clinic-management/clinic-dialog/clinic-dialog.component";
+import { UserDialogComponent } from "./components/admin/user-management/user-dialog/user-dialog.component";
+import { DoctorDialogComponent } from "./components/admin/doctor-management/doctor-dialog/doctor-dialog.component";
 
 
 
@@ -55,7 +81,14 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
     ClinicListComponent,
     UpdateMedicalClinicComponent,
     AdminDashboardComponent,
-
+    ClinicManagementComponent,
+    UserManagementComponent,
+    DoctorManagementComponent,
+    DoctorDialogComponent,
+    DashboardComponent,
+    ClinicDialogComponent,
+    DataTableComponent,
+    UserDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +98,22 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule,
-
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatChipsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

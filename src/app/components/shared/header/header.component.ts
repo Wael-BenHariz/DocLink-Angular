@@ -51,4 +51,8 @@ export class HeaderComponent implements OnInit {
   get isPatient(): boolean {
     return this.authService.isPatient()
   }
+
+  get isAdmin():boolean{
+    return this.authService.isAdmin()
+  }
 }

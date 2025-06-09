@@ -8,7 +8,7 @@ import type { PaymentTransaction } from "./payment-transaction.model"
 export enum UserRole {
   Patient,
   Doctor,
-  Admin   
+  Admin
 }
 
 export interface User {
@@ -54,4 +54,21 @@ export interface DoctorDto {
   phoneNumber?: string
   email?: string
   profilePhotoUrl?: string
+}
+export interface UserUpdateDto {
+  id: number
+  firstName?: string
+  lastName?: string
+  phoneNumber?: string
+  email?: string
+  role: UserRole
+}
+
+export interface DoctorProfileDto {
+  id: number
+  speciality: string
+  description: string
+  diploma: string
+  profilePhotoUrl?: string
+  clinicId?: number
 }

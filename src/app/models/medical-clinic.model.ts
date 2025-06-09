@@ -1,7 +1,7 @@
 import type { User } from "./user.model"
 
 export interface MedicalClinic {
-  id: number
+  id?: number
   name: string
   address: string
   phone: string

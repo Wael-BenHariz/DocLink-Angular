@@ -31,8 +31,8 @@
           <span *ngIf="!clinic.websiteUrl">N/A</span>
         </td>
         <td>
-          <button class="action-btn update-btn" (click)="onUpdate(clinic.id)">Update</button>
-          <button class="action-btn delete-btn" (click)="onDelete(clinic.id)">Delete</button>
+          <button class="action-btn update-btn" (click)="onUpdate(clinic.id!)">Update</button>
+          <button class="action-btn delete-btn" (click)="onDelete(clinic.id!)">Delete</button>
         </td>
       </tr>
     </tbody>

@@ -32,7 +32,7 @@ export class MedicalClinicService {
       headers: this.getHeaders(),
     });
   }
-  
+
    getMedicalClinics(): Observable<MedicalClinic[]> {
     return this.http.get<MedicalClinic[]>(`${this.apiUrl}`, {
       headers: this.getHeaders(),
@@ -52,6 +52,13 @@ export class MedicalClinicService {
 
   createMedicalClinic(clinic: MedicalClinic): Observable<MedicalClinic> {
     return this.http.post<MedicalClinic>(this.apiUrl, clinic, {
+      headers: this.getHeaders(),
+    });
+  }
+
+
+  update(clinic: MedicalClinic): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${clinic.id}`, clinic, {
       headers: this.getHeaders(),
     });
   }

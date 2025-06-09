@@ -1,0 +1,17 @@
+.header {
+  margin-bottom: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+mat-chip {
+  font-size: 12px;
+}
